@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.rahulmalhotra.bakingapp.API.BakingAPIService;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Making Api Callout
-        final RecipeAdapter adapter = new RecipeAdapter();
+        final RecipeAdapter adapter = new RecipeAdapter(this);
         if(isNetworkAvailable()) {
             BakingAPIService bakingAPIService = RetrofitClient.getClient("https://d17h27t6h515a5.cloudfront.net/").create(BakingAPIService.class);
             bakingAPIService.getRecipes().enqueue(new Callback<List<Recipe>>() {
