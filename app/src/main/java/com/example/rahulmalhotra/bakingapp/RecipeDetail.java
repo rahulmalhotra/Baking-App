@@ -19,6 +19,7 @@ import com.example.rahulmalhotra.bakingapp.Objects.Ingredient;
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 import com.example.rahulmalhotra.bakingapp.Objects.Step;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,6 +43,9 @@ public class RecipeDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
         ButterKnife.bind(this);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ingredientList = getIntent().getParcelableArrayListExtra("recipeIngredients");
         stepList = getIntent().getParcelableArrayListExtra("recipeSteps");
@@ -93,16 +97,18 @@ public class RecipeDetail extends AppCompatActivity {
                 Step step = stepList.get(i);
 
                 Bundle arguments = new Bundle();
-                arguments.putString("recipeDescription",step.getDescription());
-                arguments.putString("recipeVideoURL", step.getVideoURL());
 
                 if(isTablet) {
+                    arguments.putString("recipeDescription",step.getDescription());
+                    arguments.putString("recipeVideoURL", step.getVideoURL());
                     RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
                     if(arguments!=null) {
                         fragment.setArguments(arguments);
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.recipeStepDetailContainer, fragment, RecipeDetail.class.getName()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.recipeStepDetailContainer, fragment).commit();
                 } else {
+                    arguments.putParcelableArrayList("stepList", new ArrayList<>(stepList));
+                    arguments.putInt("activeStepNumber", i);
                     Intent intent = new Intent(RecipeDetail.this, RecipeStepDetail.class);
                     intent.putExtras(arguments);
                     startActivity(intent);
