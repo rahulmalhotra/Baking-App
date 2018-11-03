@@ -33,6 +33,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:padding="2dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content" />
             <ScrollView
                 android:layout_width="match_parent"

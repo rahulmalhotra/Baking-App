@@ -87,18 +87,27 @@ public class RecipeDetail extends AppCompatActivity {
 
         isTablet = getResources().getBoolean(R.bool.isTablet);
 
-        if(isTablet) {
-            RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.recipeStepDetailContainer, fragment).commit();
-        } else {
-            recipeStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        recipeStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Step step = stepList.get(i);
+
+                Bundle arguments = new Bundle();
+                arguments.putString("recipeDescription",step.getDescription());
+                arguments.putString("recipeVideoURL", step.getVideoURL());
+
+                if(isTablet) {
+                    RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
+                    if(arguments!=null) {
+                        fragment.setArguments(arguments);
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.recipeStepDetailContainer, fragment, RecipeDetail.class.getName()).commit();
+                } else {
                     Intent intent = new Intent(RecipeDetail.this, RecipeStepDetail.class);
+                    intent.putExtras(arguments);
                     startActivity(intent);
                 }
-            });
-        }
-
+            }
+        });
     }
 }

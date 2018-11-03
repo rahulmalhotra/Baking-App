@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipeStepDetail">
+
     <FrameLayout
         android:id="@+id/recipeStepDetailContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <include layout="@layout/video_and_step_detail" />
     </FrameLayout>
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/nextStepBtn"
+        app:srcCompat="?android:attr/homeAsUpIndicator"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:layoutDirection="rtl"
+    />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/prevStepBtn"
+        app:srcCompat="?android:attr/homeAsUpIndicator"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+    />
+
+</android.support.design.widget.CoordinatorLayout>
