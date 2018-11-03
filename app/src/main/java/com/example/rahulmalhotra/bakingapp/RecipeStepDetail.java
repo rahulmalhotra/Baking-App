@@ -9,5 +9,8 @@ public class RecipeStepDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_step_detail);
+
+        RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.recipeStepDetailContainer, fragment).commit();
     }
 }

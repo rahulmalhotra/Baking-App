@@ -21,9 +21,11 @@
             <include layout="@layout/ingredients_and_steps" />
         </FrameLayout>
         <FrameLayout
+            android:id="@+id/recipeStepDetailContainer"
             android:layout_weight="0.3"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <include layout="@layout/video_and_step_detail" />
         </FrameLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

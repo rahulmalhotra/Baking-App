@@ -5,5 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipeStepDetail">
-
+    <FrameLayout
+        android:id="@+id/recipeStepDetailContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/video_and_step_detail" />
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

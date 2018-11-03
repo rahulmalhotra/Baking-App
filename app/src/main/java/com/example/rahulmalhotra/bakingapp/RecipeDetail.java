@@ -1,5 +1,6 @@
 package com.example.rahulmalhotra.bakingapp;
 
+import android.content.Intent;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.BulletSpan;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,9 +32,10 @@ public class RecipeDetail extends AppCompatActivity {
     @BindView(R.id.recipeStepsList)
     ListView recipeStepsView;
 
-    Recipe recipe;
     List<Ingredient> ingredientList;
     List<Step> stepList;
+
+    private boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,21 @@ public class RecipeDetail extends AppCompatActivity {
 
         ArrayAdapter<String> recipeStepsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, descriptionArray);
         recipeStepsView.setAdapter(recipeStepsAdapter);
+
+        isTablet = getResources().getBoolean(R.bool.isTablet);
+
+        if(isTablet) {
+            RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.recipeStepDetailContainer, fragment).commit();
+        } else {
+            recipeStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(RecipeDetail.this, RecipeStepDetail.class);
+                    startActivity(intent);
+                }
+            });
+        }
 
     }
 }
