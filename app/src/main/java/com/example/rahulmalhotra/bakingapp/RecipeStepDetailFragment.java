@@ -93,7 +93,12 @@ public class RecipeStepDetailFragment extends Fragment {
 
         if (!isTablet && getActivity().getResources().getConfiguration().orientation ==
                 Configuration.ORIENTATION_LANDSCAPE) {
-            recipePlayerView.setSystemUiVisibility( View.SYSTEM_UI_FLAG_FULLSCREEN);
+            recipePlayerView.setSystemUiVisibility( View.SYSTEM_UI_FLAG_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE );
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recipePlayerView.getLayoutParams();
             params.height = params.MATCH_PARENT;

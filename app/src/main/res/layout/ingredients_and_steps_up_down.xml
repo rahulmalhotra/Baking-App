@@ -48,12 +48,12 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recipeStepsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recipeIngredientsCard"></ListView>
+        app:layout_constraintTop_toBottomOf="@id/recipeIngredientsCard"></android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -15,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.rahulmalhotra.bakingapp.Adapters.RecipeStepAdapter;
 import com.example.rahulmalhotra.bakingapp.Objects.Ingredient;
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 import com.example.rahulmalhotra.bakingapp.Objects.Step;
@@ -31,12 +34,10 @@ public class RecipeDetail extends AppCompatActivity {
     TextView ingredientsListView;
 
     @BindView(R.id.recipeStepsList)
-    ListView recipeStepsView;
+    RecyclerView recipeStepsView;
 
     List<Ingredient> ingredientList;
     List<Step> stepList;
-
-    private boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +87,15 @@ public class RecipeDetail extends AppCompatActivity {
             descriptionArray[i] = /*String.valueOf(i+1) + ". " +*/ recipeStep.getShortDescription();
         }
 
-        ArrayAdapter<String> recipeStepsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, android.R.id.text1, descriptionArray);
-        recipeStepsView.setAdapter(recipeStepsAdapter);
+        RecipeStepAdapter adapter = new RecipeStepAdapter(this);
+        adapter.setRecipeStepList(stepList);
 
-        isTablet = getResources().getBoolean(R.bool.isTablet);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recipeStepsView.setLayoutManager(layoutManager);
+        recipeStepsView.setHasFixedSize(true);
+        recipeStepsView.setAdapter(adapter);
 
+/*
         recipeStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -115,5 +120,6 @@ public class RecipeDetail extends AppCompatActivity {
                 }
             }
         });
+*/
     }
 }

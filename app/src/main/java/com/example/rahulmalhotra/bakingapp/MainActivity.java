@@ -3,6 +3,7 @@ package com.example.rahulmalhotra.bakingapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -45,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         isTablet = getResources().getBoolean(R.bool.isTablet);
         Integer screenOrientation = this.getResources().getConfiguration().orientation;
         if(isTablet) {
-            if(screenOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            if(screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
                 recyclerViewColumns = 2;
             } else {
                 recyclerViewColumns = 3;
             }
         } else {
-            if(screenOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            if(screenOrientation == Configuration.ORIENTATION_PORTRAIT) {
                 recyclerViewColumns = 1;
             } else {
                 recyclerViewColumns = 2;

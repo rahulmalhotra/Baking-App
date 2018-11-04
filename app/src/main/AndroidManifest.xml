@@ -24,11 +24,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.rahulmalhotra.bakingapp.MainActivity" />
         </activity>
-        <activity android:name=".RecipeStepDetail" android:parentActivityName=".RecipeDetail">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.rahulmalhotra.bakingapp.RecipeDetail" />
-        </activity>
+        <activity android:name=".RecipeStepDetail"></activity>
     </application>
 
 </manifest>

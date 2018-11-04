@@ -1,6 +1,8 @@
 package com.example.rahulmalhotra.bakingapp;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -40,9 +42,17 @@ public class RecipeStepDetail extends AppCompatActivity {
         if(arguments.containsKey("activeStepNumber")) {
             activeStepNumber = arguments.getInt("activeStepNumber");
         }
+
+        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            prevStepBtn.setVisibility(View.GONE);
+            nextStepBtn.setVisibility(View.GONE);
+        }
+
         if(stepList!=null) {
             setFragment();
-            addButtonClickListeners();
+            if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                addButtonClickListeners();
+            }
         }
     }
 

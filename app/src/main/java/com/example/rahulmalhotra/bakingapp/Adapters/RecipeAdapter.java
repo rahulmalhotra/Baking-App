@@ -80,7 +80,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
-            Log.d("testclick", "clicked");
             Recipe recipe = recipeList.get(getAdapterPosition());
             Intent intent = new Intent(activityContext, RecipeDetail.class);
             intent.putExtra("recipeName", recipe.getName());

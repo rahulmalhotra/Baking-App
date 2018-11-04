@@ -16,27 +16,27 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/nextStepBtn"
-        app:srcCompat="?android:attr/homeAsUpIndicator"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:layout_marginBottom="15dp"
         android:layout_marginRight="15dp"
-        android:layoutDirection="rtl"
+        android:layout_marginBottom="15dp"
         android:elevation="6dp"
-    />
+        android:layoutDirection="rtl"
+        android:tint="@android:color/white"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:srcCompat="?android:attr/homeAsUpIndicator" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/prevStepBtn"
-        app:srcCompat="?android:attr/homeAsUpIndicator"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
         android:elevation="6dp"
-    />
+        android:tint="@android:color/white"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:srcCompat="?android:attr/homeAsUpIndicator" />
 
 </android.support.design.widget.CoordinatorLayout>
