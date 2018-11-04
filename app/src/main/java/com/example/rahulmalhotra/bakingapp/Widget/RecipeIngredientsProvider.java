@@ -1,4 +1,4 @@
-package com.example.rahulmalhotra.bakingapp;
+package com.example.rahulmalhotra.bakingapp.Widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.widget.RemoteViews;
 
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
+import com.example.rahulmalhotra.bakingapp.R;
 
 /**
  * Implementation of App Widget functionality.

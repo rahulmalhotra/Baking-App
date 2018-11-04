@@ -1,4 +1,4 @@
-package com.example.rahulmalhotra.bakingapp;
+package com.example.rahulmalhotra.bakingapp.Widget;
 
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;
@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
 
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
+import com.example.rahulmalhotra.bakingapp.RecipeDetail;
 
 public class RecipeIngredientsWidgetService extends IntentService {
 

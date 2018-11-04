@@ -5,19 +5,16 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.rahulmalhotra.bakingapp.MainActivity;
-import com.example.rahulmalhotra.bakingapp.Objects.Ingredient;
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 import com.example.rahulmalhotra.bakingapp.R;
 import com.example.rahulmalhotra.bakingapp.RecipeDetail;
-import com.example.rahulmalhotra.bakingapp.RecipeIngredientsWidgetService;
+import com.example.rahulmalhotra.bakingapp.Widget.RecipeIngredientsWidgetService;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
