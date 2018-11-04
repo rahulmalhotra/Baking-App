@@ -19,12 +19,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecipeDetail" android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".RecipeDetail"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.rahulmalhotra.bakingapp.MainActivity" />
         </activity>
-        <activity android:name=".RecipeStepDetail"></activity>
+        <activity android:name=".RecipeStepDetail" />
+
+        <receiver android:name=".RecipeIngredientsProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_ingredients_provider_info" />
+        </receiver>
+
+        <service android:name=".RecipeIngredientsWidgetService" />
     </application>
 
 </manifest>

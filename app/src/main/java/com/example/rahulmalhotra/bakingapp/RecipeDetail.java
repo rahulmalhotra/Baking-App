@@ -54,6 +54,28 @@ public class RecipeDetail extends AppCompatActivity {
 
         getSupportActionBar().setTitle(recipeName);
 
+        SpannableStringBuilder ssb = getSpannableStringBuilder(ingredientList);
+
+        ingredientsListView.setText(ssb);
+
+        String[] descriptionArray = new String[stepList.size()];
+        for(int i=0; i<stepList.size(); i++) {
+            Step recipeStep = stepList.get(i);
+            descriptionArray[i] = /*String.valueOf(i+1) + ". " +*/ recipeStep.getShortDescription();
+        }
+
+        RecipeStepAdapter adapter = new RecipeStepAdapter(this);
+        adapter.setRecipeStepList(stepList);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recipeStepsView.setLayoutManager(layoutManager);
+        recipeStepsView.setHasFixedSize(true);
+        recipeStepsView.setAdapter(adapter);
+
+    }
+
+    public static SpannableStringBuilder getSpannableStringBuilder(List<Ingredient> ingredientList) {
+
         StringBuilder sb = new StringBuilder();
         for(Integer i=0; i<ingredientList.size(); i++) {
             Ingredient ingredient = ingredientList.get(i);
@@ -79,47 +101,6 @@ public class RecipeDetail extends AppCompatActivity {
             }
         }
 
-        ingredientsListView.setText(ssb);
-
-        String[] descriptionArray = new String[stepList.size()];
-        for(int i=0; i<stepList.size(); i++) {
-            Step recipeStep = stepList.get(i);
-            descriptionArray[i] = /*String.valueOf(i+1) + ". " +*/ recipeStep.getShortDescription();
-        }
-
-        RecipeStepAdapter adapter = new RecipeStepAdapter(this);
-        adapter.setRecipeStepList(stepList);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recipeStepsView.setLayoutManager(layoutManager);
-        recipeStepsView.setHasFixedSize(true);
-        recipeStepsView.setAdapter(adapter);
-
-/*
-        recipeStepsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Step step = stepList.get(i);
-
-                Bundle arguments = new Bundle();
-
-                if(isTablet) {
-                    arguments.putString("recipeDescription",step.getDescription());
-                    arguments.putString("recipeVideoURL", step.getVideoURL());
-                    RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
-                    if(arguments!=null) {
-                        fragment.setArguments(arguments);
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.recipeStepDetailContainer, fragment).commit();
-                } else {
-                    arguments.putParcelableArrayList("stepList", new ArrayList<>(stepList));
-                    arguments.putInt("activeStepNumber", i);
-                    Intent intent = new Intent(RecipeDetail.this, RecipeStepDetail.class);
-                    intent.putExtras(arguments);
-                    startActivity(intent);
-                }
-            }
-        });
-*/
+        return  ssb;
     }
 }

@@ -17,6 +17,7 @@ import com.example.rahulmalhotra.bakingapp.Objects.Ingredient;
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 import com.example.rahulmalhotra.bakingapp.R;
 import com.example.rahulmalhotra.bakingapp.RecipeDetail;
+import com.example.rahulmalhotra.bakingapp.RecipeIngredientsWidgetService;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         public void onClick(View view) {
             Recipe recipe = recipeList.get(getAdapterPosition());
             Intent intent = new Intent(activityContext, RecipeDetail.class);
+            RecipeIngredientsWidgetService.startActionUpdateRecipeIngredients(activityContext, recipe);
             intent.putExtra("recipeName", recipe.getName());
             intent.putParcelableArrayListExtra("recipeIngredients", new ArrayList<Parcelable>(recipe.getIngredients()));
             intent.putParcelableArrayListExtra("recipeSteps", new ArrayList<Parcelable>(recipe.getSteps()));
