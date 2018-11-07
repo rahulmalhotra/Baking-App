@@ -5,26 +5,21 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-
-import javax.sql.DataSource;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,18 +75,18 @@ public class RecipeStepDetailFragment extends Fragment {
         if(!recipeDescription.isEmpty()) {
             recipeStepDetailTextView.setText(recipeDescription);
         } else {
-            recipeStepDetailTextView.setText("No Step Description Found");
+            recipeStepDetailTextView.setText(R.string.noDescription);
         }
 
         if(!recipeVideoURL.isEmpty()) {
             String userAgent = Util.getUserAgent(activityContext, "Baking App");
-            MediaSource mediaSource = new ExtractorMediaSource(Uri.parse(recipeVideoURL), new DefaultDataSourceFactory(
-                    activityContext, userAgent), new DefaultExtractorsFactory(), null, null);
+            MediaSource mediaSource = new ExtractorMediaSource.Factory(new DefaultDataSourceFactory(
+                    activityContext, userAgent)).createMediaSource(Uri.parse(recipeVideoURL));
             recipePlayer.prepare(mediaSource);
             recipePlayer.setPlayWhenReady(true);
         }
 
-        if (!isTablet && getActivity().getResources().getConfiguration().orientation ==
+        if (!isTablet && getActivity()!=null && getActivity().getResources().getConfiguration().orientation ==
                 Configuration.ORIENTATION_LANDSCAPE) {
             recipePlayerView.setSystemUiVisibility( View.SYSTEM_UI_FLAG_FULLSCREEN |
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
@@ -99,7 +94,8 @@ public class RecipeStepDetailFragment extends Fragment {
                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE );
-            ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+            if(getActivity()!=null && ((AppCompatActivity) getActivity()).getSupportActionBar()!=null)
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recipePlayerView.getLayoutParams();
             params.height = params.MATCH_PARENT;
             recipePlayerView.setLayoutParams(params);

@@ -3,24 +3,17 @@ package com.example.rahulmalhotra.bakingapp.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.rahulmalhotra.bakingapp.MainActivity;
-import com.example.rahulmalhotra.bakingapp.Objects.Ingredient;
-import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 import com.example.rahulmalhotra.bakingapp.Objects.Step;
 import com.example.rahulmalhotra.bakingapp.R;
-import com.example.rahulmalhotra.bakingapp.RecipeDetail;
 import com.example.rahulmalhotra.bakingapp.RecipeStepDetail;
 import com.example.rahulmalhotra.bakingapp.RecipeStepDetailFragment;
 import com.squareup.picasso.Picasso;
@@ -93,9 +86,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Vi
                 arguments.putString("recipeDescription",step.getDescription());
                 arguments.putString("recipeVideoURL", step.getVideoURL());
                 RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
-                if(arguments!=null) {
-                    fragment.setArguments(arguments);
-                }
+                fragment.setArguments(arguments);
                 ((AppCompatActivity)activityContext).getSupportFragmentManager().beginTransaction().replace(R.id.recipeStepDetailContainer, fragment).commit();
             } else {
                 arguments.putParcelableArrayList("stepList", new ArrayList<>(recipeStepList));

@@ -1,14 +1,9 @@
 package com.example.rahulmalhotra.bakingapp;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.rahulmalhotra.bakingapp.Objects.Step;
@@ -36,10 +31,10 @@ public class RecipeStepDetail extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Bundle arguments = getIntent().getExtras();
-        if(arguments.containsKey("stepList")) {
+        if(arguments!=null && arguments.containsKey("stepList")) {
             stepList = arguments.getParcelableArrayList("stepList");
         }
-        if(arguments.containsKey("activeStepNumber")) {
+        if(arguments!=null && arguments.containsKey("activeStepNumber")) {
             activeStepNumber = arguments.getInt("activeStepNumber");
         }
 
@@ -83,7 +78,9 @@ public class RecipeStepDetail extends AppCompatActivity {
     private void setFragment() {
         Bundle arguments = new Bundle();
         Step step = stepList.get(activeStepNumber);
-        getSupportActionBar().setTitle(step.getShortDescription());
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setTitle(step.getShortDescription());
+        }
 /*
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

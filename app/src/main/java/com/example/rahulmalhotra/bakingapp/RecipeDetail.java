@@ -1,28 +1,19 @@
 package com.example.rahulmalhotra.bakingapp;
 
-import android.content.Intent;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.BulletSpan;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.rahulmalhotra.bakingapp.Adapters.RecipeStepAdapter;
 import com.example.rahulmalhotra.bakingapp.Objects.Ingredient;
-import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 import com.example.rahulmalhotra.bakingapp.Objects.Step;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,8 +36,10 @@ public class RecipeDetail extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_detail);
         ButterKnife.bind(this);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         ingredientList = getIntent().getParcelableArrayListExtra("recipeIngredients");
         stepList = getIntent().getParcelableArrayListExtra("recipeSteps");
@@ -58,11 +51,15 @@ public class RecipeDetail extends AppCompatActivity {
 
         ingredientsListView.setText(ssb);
 
+/*
         String[] descriptionArray = new String[stepList.size()];
         for(int i=0; i<stepList.size(); i++) {
             Step recipeStep = stepList.get(i);
-            descriptionArray[i] = /*String.valueOf(i+1) + ". " +*/ recipeStep.getShortDescription();
+            descriptionArray[i] = */
+/*String.valueOf(i+1) + ". " +*//*
+ recipeStep.getShortDescription();
         }
+*/
 
         RecipeStepAdapter adapter = new RecipeStepAdapter(this);
         adapter.setRecipeStepList(stepList);

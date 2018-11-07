@@ -1,7 +1,5 @@
 package com.example.rahulmalhotra.bakingapp;
 
-
-import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;

@@ -2,7 +2,6 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="@dimen/cardview_default_elevation"
@@ -22,7 +21,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:contentDescription="recipeImage"
+            android:contentDescription="@string/recipeImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/barrier3"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,14 +51,14 @@
                 android:id="@+id/recipeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recipe Title"
+                android:text="@string/recipeTitle"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/recipeServing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Servings"
+                android:text="@string/servings"
                 android:textSize="15sp" />
 
         </LinearLayout>

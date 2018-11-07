@@ -27,7 +27,7 @@
             <TextView
                 android:id="@+id/ingredientsTitle"
                 android:layout_width="match_parent"
-                android:text="Ingredients"
+                android:text="@string/ingredients"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -55,5 +55,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recipeIngredientsCard"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@id/recipeIngredientsCard" />
 </android.support.constraint.ConstraintLayout>

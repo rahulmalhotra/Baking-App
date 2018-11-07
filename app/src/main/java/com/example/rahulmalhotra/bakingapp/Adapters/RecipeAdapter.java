@@ -47,7 +47,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Recipe recipe = recipeList.get(holder.getAdapterPosition());
         holder.recipeTitle.setText(recipe.getName());
-        holder.recipeServing.setText("Servings: " + String.valueOf(recipe.getServings()));
+        holder.recipeServing.setText(activityContext.getResources().getString(R.string.servingsDisplay).concat(String.valueOf(recipe.getServings())));
         if(!recipe.getImage().isEmpty()) {
             Picasso.get().load(recipe.getImage()).into(holder.recipeImage);
         } else {

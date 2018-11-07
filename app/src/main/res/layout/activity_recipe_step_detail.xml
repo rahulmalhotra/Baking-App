@@ -18,7 +18,7 @@
         android:id="@+id/nextStepBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|right|end"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:elevation="6dp"
@@ -31,12 +31,13 @@
         android:id="@+id/prevStepBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
+        android:layout_gravity="bottom|left|start"
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="15dp"
         android:elevation="6dp"
         android:tint="@android:color/white"
         app:backgroundTint="@android:color/holo_blue_light"
-        app:srcCompat="?android:attr/homeAsUpIndicator" />
+        app:srcCompat="?android:attr/homeAsUpIndicator"
+        android:layout_marginStart="15dp" />
 
 </android.support.design.widget.CoordinatorLayout>

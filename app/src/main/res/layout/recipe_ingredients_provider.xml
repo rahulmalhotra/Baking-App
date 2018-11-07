@@ -12,7 +12,7 @@
         android:layout_margin="8dp"
         android:textSize="18sp"
         android:textColor="#ffffff"
-        android:text="Recipe Name"
+        android:text="@string/recipeName"
         android:textStyle="bold|italic" />
 
     <TextView
@@ -23,9 +23,9 @@
         android:layout_below="@id/recipeName"
         android:layout_margin="8dp"
         android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
+        android:contentDescription="@string/ingredients"
         android:textColor="#ffffff"
         android:textSize="16sp"
-        android:text="Recipe Ingredients" />
+        android:text="@string/ingredients" />
 
 </RelativeLayout>
