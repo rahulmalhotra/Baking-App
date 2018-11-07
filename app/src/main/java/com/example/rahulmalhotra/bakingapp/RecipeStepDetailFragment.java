@@ -2,8 +2,10 @@ package com.example.rahulmalhotra.bakingapp;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +39,27 @@ public class RecipeStepDetailFragment extends Fragment {
     Context activityContext;
     boolean isTablet;
     SimpleExoPlayer recipePlayer;
+    Long playerPosition;
+    int playerState;
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        playerPosition = 0L;
+        if(savedInstanceState!=null) {
+            playerPosition = savedInstanceState.getLong("playerPosition");
+            playerState = savedInstanceState.getInt("playerState");
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        playerPosition = recipePlayer.getCurrentPosition();
+        playerState = recipePlayer.getPlaybackState();
+        outState.putLong("playerPosition", playerPosition);
+        outState.putInt("playerState", playerState);
+        super.onSaveInstanceState(outState);
+    }
 
     public RecipeStepDetailFragment() {
     }
@@ -50,6 +73,11 @@ public class RecipeStepDetailFragment extends Fragment {
         }
         if(getArguments().containsKey("recipeVideoURL")) {
             recipeVideoURL = getArguments().getString("recipeVideoURL");
+        }
+        playerPosition = 0L;
+        if(savedInstanceState!=null) {
+            playerPosition = savedInstanceState.getLong("playerPosition");
+            playerState = savedInstanceState.getInt("playerState");
         }
         super.onCreate(savedInstanceState);
     }
@@ -67,6 +95,7 @@ public class RecipeStepDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View fragmentView = inflater.inflate(R.layout.video_and_step_detail, container, false);
         ButterKnife.bind(this, fragmentView);
         recipePlayer = ExoPlayerFactory.newSimpleInstance(activityContext);
@@ -83,7 +112,11 @@ public class RecipeStepDetailFragment extends Fragment {
             MediaSource mediaSource = new ExtractorMediaSource.Factory(new DefaultDataSourceFactory(
                     activityContext, userAgent)).createMediaSource(Uri.parse(recipeVideoURL));
             recipePlayer.prepare(mediaSource);
-            recipePlayer.setPlayWhenReady(true);
+            if(playerState == PlaybackState.STATE_PAUSED)
+                recipePlayer.setPlayWhenReady(false);
+            else
+                recipePlayer.setPlayWhenReady(true);
+            recipePlayer.seekTo(playerPosition);
         }
 
         if (!isTablet && getActivity()!=null && getActivity().getResources().getConfiguration().orientation ==

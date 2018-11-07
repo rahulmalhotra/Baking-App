@@ -44,7 +44,9 @@ public class RecipeStepDetail extends AppCompatActivity {
         }
 
         if(stepList!=null) {
-            setFragment();
+            if(savedInstanceState==null) {
+                setFragment();
+            }
             if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 addButtonClickListeners();
             }

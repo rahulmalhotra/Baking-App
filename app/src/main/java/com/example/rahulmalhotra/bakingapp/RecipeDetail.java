@@ -51,16 +51,6 @@ public class RecipeDetail extends AppCompatActivity {
 
         ingredientsListView.setText(ssb);
 
-/*
-        String[] descriptionArray = new String[stepList.size()];
-        for(int i=0; i<stepList.size(); i++) {
-            Step recipeStep = stepList.get(i);
-            descriptionArray[i] = */
-/*String.valueOf(i+1) + ". " +*//*
- recipeStep.getShortDescription();
-        }
-*/
-
         RecipeStepAdapter adapter = new RecipeStepAdapter(this);
         adapter.setRecipeStepList(stepList);
 
