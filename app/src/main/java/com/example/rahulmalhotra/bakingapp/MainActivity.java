@@ -6,6 +6,10 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 import com.example.rahulmalhotra.bakingapp.API.BakingAPIService;
 import com.example.rahulmalhotra.bakingapp.API.RetrofitClient;
 import com.example.rahulmalhotra.bakingapp.Adapters.RecipeAdapter;
+import com.example.rahulmalhotra.bakingapp.IdlingResource.SimpleIdlingResource;
 import com.example.rahulmalhotra.bakingapp.Objects.Recipe;
 
 import java.util.List;
@@ -35,6 +40,24 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
     private boolean isTablet;
     private Integer recyclerViewColumns;
+
+    @Nullable
+    private SimpleIdlingResource simpleIdlingResource;
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if(simpleIdlingResource==null) {
+            simpleIdlingResource = new SimpleIdlingResource();
+        }
+        return simpleIdlingResource;
+    }
+
+    private void setSimpleIdlingResourceIdleState(boolean idleState) {
+        if(simpleIdlingResource!=null) {
+            simpleIdlingResource.setIdleState(idleState);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        getIdlingResource();
+        setSimpleIdlingResourceIdleState(false);
+
         // Making Api Callout
         final RecipeAdapter adapter = new RecipeAdapter(this);
         if(isNetworkAvailable()) {
@@ -68,11 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                     if(response.isSuccessful()) {
                         adapter.setRecipeList(response.body());
+                        setSimpleIdlingResourceIdleState(true);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<List<Recipe>> call, Throwable t) {
+                    setSimpleIdlingResourceIdleState(true);
                     Log.d( TAG, t.getMessage());
                 }
             });
